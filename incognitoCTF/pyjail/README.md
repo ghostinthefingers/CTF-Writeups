@@ -1,6 +1,6 @@
-#incognito CTF 2022
+# incognito CTF 2022
 
-##pyjail 1
+## pyjail 1
 
 a python jail challenge which was filtering ```__``` so we couldn't call ```__builtins__``` or etc.
 after some fuzzing I found that ```%``` is also filtered. so there was an idea for me
