@@ -47,6 +47,7 @@ I wrote below payload to hijack the result of  ```/reset2fa``` and send it to ou
 
 now we have secret token. we should convert it to QR code
 ![Screenshot_2022-05-01_05_13_51](https://user-images.githubusercontent.com/83473054/166119519-e1885483-67f6-4023-9052-cad3cf9c0dc1.png)
+
 got it and scaned with my phone, now I have the google auth
 
 the next step is reseting admin password.
