@@ -66,7 +66,8 @@ I wrote below payload to reset admin password
 
 and got ```{"success":true}``` in my webhook response.
 
-now I can login with admin creds which it's username is ```admin``` and password is ```a``` (what we changed) and the google auth
+now I can login with admin creds which it's username is ```admin``` and password is ```a``` (what we changed) and the google auth.
+
 logged in and we are able to read the flag from admin's secrets
 
 ![Screenshot_2022-05-01 Fort Knox(5)](https://user-images.githubusercontent.com/83473054/166119740-71f6c15a-9298-4b4a-bbad-bdb78ba0c352.png)
