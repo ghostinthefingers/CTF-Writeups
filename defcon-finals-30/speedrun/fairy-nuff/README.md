@@ -127,7 +127,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 ```
 
 in above code we could see the program gets some bytes from input and save in the mmap which itself is made.
-in below code we could see which it will save which bytes.
+in below code we could see that it will save which bytes.
 
 ```c
       case 3:
