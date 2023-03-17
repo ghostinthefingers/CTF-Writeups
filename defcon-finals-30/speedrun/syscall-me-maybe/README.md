@@ -19,7 +19,7 @@ gdb.attach(p,'''
 
 ```
 
-in above code I loaded the elf file and make gdb ready for debugging stuff. then we must create a new mapping in the virtual address space for bypassing ASLR.
+in above code I loaded the elf file and make gdb ready for debugging stuff. then we must create a new mapping in the virtual address space for bypassing the PIE.
 
 ```python
 
