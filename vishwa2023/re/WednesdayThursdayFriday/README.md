@@ -93,14 +93,19 @@ z.add(s[33] + s[25] - s[31] * s[23] + s[27] - s[26] * s[32] + s[30] - s[24] * s[
 
 flag_format = "VishwaCTF{"
 
+# check if first 10 chars would be like flag_format
 for i in range(10):
     z.add(s[i] == ord(flag_format[i]))
 
+# check if all chars would be ascii printable
 for i in range(10,34):
      z.add(s[i] >= ord('!'))
      z.add(s[i] <= ord('~'))
+     
+# chack if the last char would be "}"
 z.add(s[-1] == ord('}'))
 
+# check if z3 can solve it
 if z.check() == sat:
     solution = z.model()
     flag = ""
