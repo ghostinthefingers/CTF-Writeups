@@ -1,4 +1,4 @@
-# VishwaCTF 2023 - Wednesday Thursday Friday re challenge
+# VishwaCTF 2023 - Wednesday Thursday Friday re challenge (z3 and angr solve)
 
 when we disassemble the elf file with IDA we will see below code
 
@@ -55,6 +55,7 @@ __int64 __fastcall main(int a1, char **a2, char **a3)
 
 ok we can see the elf file is just checking some conditions and if all of them was true you will get CORRECT else you will get INCORRECT
 
+## z3 solve
 we could solve it easily using Z3. here we go
 
 ```py
@@ -123,3 +124,48 @@ from elf file we know that the length of flag is 34 chars and we will add the fl
 after run the script, we will get the flag.
 
 `VishwaCTF{N3V3r_60NN4_61V3_Y0U_UP}`
+
+
+## angr solve
+
+__@BlackIce417__ asked me about angr solution so that I also wrote a solver using angr
+
+```py
+import angr
+import claripy
+
+flag_length = 34
+correct_address = 0x00102446
+failure_address = 0x00102472
+base_address = 0x00100000
+
+proj = angr.Project("./solveme", load_options={"auto_load_libs": False}, main_opts={"base_addr": base_address})
+flag_chars = [claripy.BVS(f"flag{i}", 8) for i in range(flag_length)]
+flag = claripy.Concat(*flag_chars)
+
+state = proj.factory.full_init_state(
+    args=['./solveme',flag],
+    add_options=angr.options.unicorn,
+)
+
+
+flag_format = "VishwaCTF{"
+
+# give it the flag format for make the solve more easy
+for i in range(10):
+    state.solver.add(flag_chars[i] == ord(flag_format[i]))
+
+# we need only ascii printable characters
+for i in range(10,34):
+    state.solver.add(flag_chars[i] >= ord('!'))
+    state.solver.add(flag_chars[i] <= ord('~'))
+
+simgr = proj.factory.simulation_manager(state)
+simgr.explore(find=correct_address,avoid=failure_address)
+
+
+if simgr.found:
+    found = simgr.found[0]
+    res = found.solver.eval(flag, cast_to=bytes)
+    print(res.decode())
+```
